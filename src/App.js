@@ -8,7 +8,6 @@ class App extends Component {
       <div className="App">
         <h1>D3 Experiment</h1>
         <div className="container">
-          <h2>D3.js + Immutable.js performance test</h2>
           <Performance />
         </div>
       </div>

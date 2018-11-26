@@ -1,7 +1,8 @@
 .Performance {
-  display: flex;
-
-  .iterations > * {
-    margin-right: 20px;
+  .iterations {
+    display: flex;
+    >* {
+      margin-right: 20px;
+    }
   }
 }
