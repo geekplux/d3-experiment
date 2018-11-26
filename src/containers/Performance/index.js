@@ -17,7 +17,7 @@ export default class Performance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      iterations: 50,
+      iterations: 20,
       testResults: [],
     };
   }
