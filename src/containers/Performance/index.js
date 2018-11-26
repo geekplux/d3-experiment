@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import * as d3 from "d3";
 import { makeTester } from "./performance";
 import testCases from "./testCases";
@@ -52,14 +52,14 @@ export default class Performance extends Component {
             step="10"
             value={iterations}
           />
-          <button onClick={this.handleClick}>RUN TEST</button>
         </div>
-        <h3>Results: </h3>
+        <button onClick={this.handleClick}>RUN TEST</button>
+        <h3>Click "RUN TEST" button and wait for Results: </h3>
         {testResults && testResults.map((result, i) => (
           <div className="result" key={i}>
             <h4>{result.title}</h4>
             {result.items && result.items.map((item, j) => (
-              <p>{item.desc}: <strong>{item.time}</strong></p>
+              <p key={j}>{item.desc}: <strong>{item.time}</strong> ms</p>
             ))}
           </div>
         ))}

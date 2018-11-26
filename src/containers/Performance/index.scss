@@ -1,8 +1,24 @@
 .Performance {
   .iterations {
     display: flex;
+    align-items: center;
+
     >* {
       margin-right: 20px;
+    }
+  }
+  button {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 30px;
+    margin: 30px 0;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      background: #fff;
+      color: #5f5bd4;
+      border: 2px solid transparent;
     }
   }
 }
