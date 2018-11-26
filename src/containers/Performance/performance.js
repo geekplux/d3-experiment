@@ -1,5 +1,5 @@
-export function tester({
-  iterations,
+export function makeTester({
+  iterations = 100,
   testFn = renderD3,
   setupFn = cleanup,
   teardownFn = cleanup
@@ -28,14 +28,14 @@ export function cleanup({ svg }) {
   svg.node().innerHTML = "";
 }
 
-export function renderD3({ data, key, xAccsessor, svg }) {
-  [].concat(data).forEach(function(_data) {
-    const circ = svg.selectAll("circle").data(_data, key);
-    circ
-      .enter()
-      .append("circle")
-      .attr({ cx: 50, cy: 50, r: 50, fill: "black" });
-    circ.attr("fill", "red").attr("cx", xAccsessor);
-    circ.exit().remove();
-  });
+export function renderD3({ data, key, xAccessor, svg }) {
+  const circ = svg
+    .selectAll("circle")
+    .data(data, key)
+    .enter()
+    .append("circle");
+
+  circ.attr({ cx: 50, cy: 50, r: 50, fill: "black" });
+  circ.attr("fill", "red").attr("cx", xAccessor);
+  circ.exit().remove();
 }

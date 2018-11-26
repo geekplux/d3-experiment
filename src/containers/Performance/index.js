@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
-import { tester } from './performance';
+import { makeTester } from "./performance";
+import testCases from "./testCases";
 import "./index.scss";
+
+function runTest(tester, svg) {
+  const results = [];
+  testCases.map(test => {
+    const spec = test(tester, svg);
+    results.push(spec);
+  });
+  return results;
+}
 
 export default class Performance extends Component {
   constructor(props) {
     super(props);
     this.state = {
       iterations: 100,
-      JSIntTime: {},
+      testResults: [],
     };
   }
 
@@ -21,14 +31,13 @@ export default class Performance extends Component {
   componentDidMount() {
     const { iterations } = this.state;
     const svg = d3.select(this.svgRef);
-    const data = d3.range(0, 1000);
-    const testCase = tester({ iterations });
-    const _default = testCase('JS int join', { svg, data: [ data ], key: null, accessor: null });
-    this.setState({ JSIntTime: { _default } });
+    const tester = makeTester({ iterations });
+    const testResults = runTest(tester, svg);
+    this.setState({ testResults });
   }
 
   render() {
-    const { iterations, JSIntTime } = this.state;
+    const { iterations } = this.state;
     return (
       <div className="Performance">
         <h2>D3.js + Immutable.js performance test</h2>
@@ -46,7 +55,6 @@ export default class Performance extends Component {
         </div>
         <h3>Results: </h3>
         <h4>Testing JavaScript Array with 1000 Integer elements</h4>
-        <p>Default {JSIntTime._default}</p>
         <svg ref={this.setSVGRef} />
       </div>
     );
