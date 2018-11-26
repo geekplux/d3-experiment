@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import * as d3 from "d3";
 import { makeTester } from "./performance";
 import testCases from "./testCases";
@@ -17,7 +17,7 @@ export default class Performance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      iterations: 100,
+      iterations: 50,
       testResults: [],
     };
   }
@@ -26,9 +26,9 @@ export default class Performance extends Component {
 
   handleChange = event => {
     this.setState({ iterations: event.target.value });
-  };
+  }
 
-  componentDidMount() {
+  handleClick = event => {
     const { iterations } = this.state;
     const svg = d3.select(this.svgRef);
     const tester = makeTester({ iterations });
@@ -37,7 +37,7 @@ export default class Performance extends Component {
   }
 
   render() {
-    const { iterations } = this.state;
+    const { iterations, testResults } = this.state;
     return (
       <div className="Performance">
         <h2>D3.js + Immutable.js performance test</h2>
@@ -47,14 +47,22 @@ export default class Performance extends Component {
           <input
             onChange={this.handleChange}
             type="range"
-            min="100"
+            min="10"
             max="1000"
             step="10"
             value={iterations}
           />
+          <button onClick={this.handleClick}>RUN TEST</button>
         </div>
         <h3>Results: </h3>
-        <h4>Testing JavaScript Array with 1000 Integer elements</h4>
+        {testResults && testResults.map((result, i) => (
+          <div className="result" key={i}>
+            <h4>{result.title}</h4>
+            {result.items && result.items.map((item, j) => (
+              <p>{item.desc}: <strong>{item.time}</strong></p>
+            ))}
+          </div>
+        ))}
         <svg ref={this.setSVGRef} />
       </div>
     );
