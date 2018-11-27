@@ -1,7 +1,9 @@
 import * as d3 from 'd3';
 import Immutable from 'immutable';
 
-export default [testJSInt, testImmutableInt, testJSFloat, testJSObj];
+// export default [testJSInt, testImmutableInt, testJSFloat, testJSObj];
+export default [testJSInt, testJSFloat, testJSObj];
+// export default [testImmutableInt];
 
 export function testJSInt(tester, svg) {
   const spec = {
@@ -94,8 +96,7 @@ export function testImmutableInt(tester, svg) {
   console.debug(spec.title);
   console.debug('***************************************************');
 
-  var data = [].concat([ Immutable.fromJS(d3.range(0, 1000))]);
-  console.log(data)
+  var data = [Immutable.fromJS(d3.range(0, 1000))];
 
   var index = function(d, i) { return i; };
   var accessor = function(d, i) { return d; };

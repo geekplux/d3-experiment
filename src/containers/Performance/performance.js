@@ -28,7 +28,7 @@ export function cleanup({ svg }) {
   svg.node().innerHTML = "";
 }
 
-export function renderD3({ data, key, xAccessor, svg }) {
+export function renderD3({ data, key, color = '#fff', radius = 5, xAccessor = d => getRandomInt(200), yAccessor = d => getRandomInt(200), svg } = {}) {
   const circ = svg
     .selectAll("circle")
     .data(data, key)
@@ -36,6 +36,14 @@ export function renderD3({ data, key, xAccessor, svg }) {
     .append("circle");
 
   circ.attr({ cx: 50, cy: 50, r: 50, fill: "black" });
-  circ.attr("fill", "red").attr("cx", xAccessor);
+  circ.attr("fill", color)
+    .attr("cx", xAccessor)
+    .attr('cy', yAccessor)
+    .attr('r', radius);
+
   circ.exit().remove();
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
