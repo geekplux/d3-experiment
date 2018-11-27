@@ -35,7 +35,7 @@ export default class Performance extends Component {
       <div className="Performance">
         <div className="test">
           <h2>D3.js performance test</h2>
-          <div className="iterations">
+          <div className="count">
             <span>Count of elements you want to render:</span>
             <strong>{count}</strong>
             <input

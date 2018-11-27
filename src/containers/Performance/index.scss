@@ -4,12 +4,17 @@
   align-items: flex-start;
   justify-content: space-between;
 
-  .iterations {
+  .count {
     display: flex;
     align-items: center;
 
     >* {
       margin-right: 20px;
+    }
+
+    strong {
+      width: 50px;
+      font-size: 18px;
     }
   }
   button {
