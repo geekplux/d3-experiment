@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "d3": "^5.7.0",
-    "immutable": "^4.0.0-rc.12",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
