@@ -4,6 +4,12 @@
 
 > Some experiments and tests for using d3.
 
+There are some cases:
+
+### Rendering performance test
+
+![](./assets/performance.png)
+
 ## Usage
 
 ```bash
