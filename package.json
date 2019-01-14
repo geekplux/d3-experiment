@@ -1,7 +1,15 @@
 {
   "name": "d3-experiment",
   "version": "0.1.0",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/geekplux/d3-experiment.git"
+  },
+  "author": "GeekPlux <geekplux@gmail.com> (http://geekplux.com/)",
+  "keywords": [
+    "d3"
+  ],
+  "license": "MIT",
   "dependencies": {
     "d3": "^5.7.0",
     "react": "^16.6.3",
